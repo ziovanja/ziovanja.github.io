@@ -164,6 +164,54 @@
       stroke-linejoin: round;
     }
 
+    .burger {
+      display: none;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      padding: 0;
+      cursor: pointer;
+      transition: 0.25s ease;
+      place-items: center;
+    }
+
+    .burger:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.22);
+    }
+
+    .burger svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .menu-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(4px);
+      z-index: 9;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .menu-overlay.open {
+      display: block;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
     .hero {
       padding: 72px 0 34px;
     }
@@ -482,7 +530,35 @@
     }
 
     @media (max-width: 720px) {
-      .nav { align-items: flex-start; flex-direction: column; }
+      .nav { align-items: center; flex-direction: row; }
+      .burger { display: grid; }
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: min(360px, calc(100% - 48px));
+        padding: 18px 18px 22px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        background: rgba(8, 12, 24, 0.94);
+        border-left: 1px solid rgba(255,255,255,0.08);
+        transform: translateX(110%);
+        transition: transform 0.25s ease;
+        z-index: 11;
+        overflow: auto;
+      }
+
+      .nav-links.open {
+        transform: translateX(0);
+      }
+
+      html.theme-light .nav-links {
+        background: rgba(255,255,255,0.96);
+        border-left: 1px solid rgba(11,16,32,0.08);
+      }
+
       .hero { padding-top: 40px; }
       .hero-grid,
       .skills-grid,
@@ -505,7 +581,14 @@
         <div class="brand-badge">IA</div>
         <div>Ivan Agliardi / <span style="opacity:.7">ziovanja.github.io</span></div>
       </div>
-      <div class="nav-links">
+      <button class="burger" type="button" aria-label="Menu" aria-controls="mobile-menu" aria-expanded="false" data-burger>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 7h16" />
+          <path d="M4 12h16" />
+          <path d="M4 17h16" />
+        </svg>
+      </button>
+      <div class="nav-links" id="mobile-menu">
         <a href="#skills"><span data-lang="it">Skill</span><span data-lang="en">Skills</span></a>
         <a href="#stack">Stack</a>
         <a href="#services"><span data-lang="it">Servizi</span><span data-lang="en">Services</span></a>
@@ -537,6 +620,8 @@
       </div>
     </div>
   </div>
+
+  <div class="menu-overlay" data-menu-overlay aria-hidden="true"></div>
 
   <main>
     <section class="hero">
@@ -799,6 +884,9 @@
   <script>
     const buttons = document.querySelectorAll('[data-set-lang]');
     const themeButtons = document.querySelectorAll('[data-set-theme]');
+    const burgerButton = document.querySelector('[data-burger]');
+    const mobileMenu = document.querySelector('#mobile-menu');
+    const menuOverlay = document.querySelector('[data-menu-overlay]');
     const root = document.documentElement;
     const saved = localStorage.getItem('site-lang') || 'it';
     const savedTheme = localStorage.getItem('site-theme');
@@ -820,6 +908,46 @@
     }
 
     buttons.forEach(btn => btn.addEventListener('click', () => setLang(btn.dataset.setLang)));
+
+    function openMenu() {
+      if (!mobileMenu) return;
+      mobileMenu.classList.add('open');
+      if (menuOverlay) menuOverlay.classList.add('open');
+      if (burgerButton) {
+        burgerButton.setAttribute('aria-expanded', 'true');
+      }
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      if (!mobileMenu) return;
+      mobileMenu.classList.remove('open');
+      if (menuOverlay) menuOverlay.classList.remove('open');
+      if (burgerButton) {
+        burgerButton.setAttribute('aria-expanded', 'false');
+      }
+      document.body.style.overflow = '';
+    }
+
+    if (burgerButton && mobileMenu) {
+      burgerButton.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.contains('open');
+        if (isOpen) closeMenu();
+        else openMenu();
+      });
+
+      if (menuOverlay) {
+        menuOverlay.addEventListener('click', closeMenu);
+      }
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+      });
+
+      mobileMenu.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', closeMenu);
+      });
+    }
 
     const initialTheme = savedTheme || (prefersLight ? 'light' : 'dark');
     setTheme(initialTheme);
