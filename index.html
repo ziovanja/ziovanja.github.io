@@ -110,6 +110,7 @@
 
     .nav-links a,
     .lang-toggle button,
+    .theme-toggle button,
     .cta {
       border: 1px solid var(--line);
       background: rgba(255,255,255,0.04);
@@ -123,11 +124,44 @@
 
     .nav-links a:hover,
     .lang-toggle button:hover,
+    .theme-toggle button:hover,
     .cta:hover,
-    .lang-toggle button.active {
+    .lang-toggle button.active,
+    .theme-toggle button.active {
       transform: translateY(-1px);
       background: rgba(255,255,255,0.1);
       border-color: rgba(255,255,255,0.22);
+    }
+
+    /* Show only the option that is NOT active */
+    .lang-toggle button.active,
+    .theme-toggle button.active {
+      display: none;
+    }
+
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .theme-toggle button {
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+    }
+
+    .theme-toggle svg {
+      width: 18px;
+      height: 18px;
+      color: currentColor;
+      fill: currentColor;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .hero {
@@ -343,6 +377,90 @@
       border: 1px solid rgba(255,255,255,0.08);
     }
 
+    /* Theme (dark is default) */
+    html.theme-light {
+      --text: #0b1020;
+      --muted: #4b556e;
+      --line: rgba(11,16,32,0.14);
+      --card: rgba(11,16,32,0.04);
+      --card-strong: rgba(11,16,32,0.07);
+      --shadow: 0 20px 60px rgba(0,0,0,0.14);
+    }
+
+    html.theme-light body {
+      background:
+        radial-gradient(circle at top left, rgba(124,156,255,0.22), transparent 30%),
+        radial-gradient(circle at top right, rgba(101,224,199,0.16), transparent 28%),
+        linear-gradient(180deg, #f5f7ff 0%, #eef2ff 100%);
+    }
+
+    html.theme-light .topbar {
+      background: rgba(255,255,255,0.75);
+      border-bottom: 1px solid rgba(11,16,32,0.08);
+    }
+
+    html.theme-light .nav-links a,
+    html.theme-light .lang-toggle button,
+    html.theme-light .theme-toggle button,
+    html.theme-light .cta {
+      background: rgba(11,16,32,0.04);
+      border-color: var(--line);
+    }
+
+    html.theme-light .nav-links a:hover,
+    html.theme-light .lang-toggle button:hover,
+    html.theme-light .theme-toggle button:hover,
+    html.theme-light .cta:hover,
+    html.theme-light .lang-toggle button.active,
+    html.theme-light .theme-toggle button.active {
+      background: rgba(11,16,32,0.08);
+      border-color: rgba(11,16,32,0.16);
+    }
+
+    html.theme-light .panel {
+      background: linear-gradient(180deg, rgba(11,16,32,0.06), rgba(11,16,32,0.03));
+      border: 1px solid rgba(11,16,32,0.08);
+    }
+
+    html.theme-light .stat {
+      background: rgba(11,16,32,0.03);
+      border: 1px solid rgba(11,16,32,0.06);
+    }
+
+    html.theme-light .card {
+      border: 1px solid rgba(11,16,32,0.08);
+    }
+
+    html.theme-light .tag {
+      background: rgba(11,16,32,0.04);
+      border: 1px solid rgba(11,16,32,0.08);
+      color: #2b3852;
+    }
+
+    html.theme-light .timeline-item {
+      background: rgba(11,16,32,0.03);
+    }
+
+    html.theme-light .footer-box {
+      background: rgba(11,16,32,0.03);
+      border: 1px solid rgba(11,16,32,0.08);
+    }
+
+    html.theme-light .eyebrow {
+      color: #2b3852;
+      border-color: rgba(124,156,255,0.4);
+      background: rgba(124,156,255,0.16);
+    }
+
+    html.theme-light .mini-terminal {
+      background: #f4f7ff;
+      border: 1px solid rgba(11,16,32,0.10);
+      color: #0b1020;
+    }
+
+    html.theme-light .mini-terminal .prompt { color: #0ea5e9; }
+    html.theme-light .mini-terminal .accent { color: #4f46e5; }
+
     [data-lang] { display: none; }
     html.lang-it [data-lang="it"] { display: inline; }
     html.lang-en [data-lang="en"] { display: inline; }
@@ -395,6 +513,26 @@
         <div class="lang-toggle" aria-label="Language switcher">
           <button class="active" data-set-lang="it">IT</button>
           <button data-set-lang="en">EN</button>
+        </div>
+        <div class="theme-toggle" aria-label="Theme switcher">
+          <button class="active" data-set-theme="dark" aria-label="Dark mode">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" />
+            </svg>
+          </button>
+          <button data-set-theme="light" aria-label="Light mode">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" />
+              <path d="M12 2v2" />
+              <path d="M12 20v2" />
+              <path d="M4.93 4.93l1.41 1.41" />
+              <path d="M17.66 17.66l1.41 1.41" />
+              <path d="M2 12h2" />
+              <path d="M20 12h2" />
+              <path d="M4.93 19.07l1.41-1.41" />
+              <path d="M17.66 6.34l1.41-1.41" />
+            </svg>
+          </button>
         </div>
       </div>
     </div>
@@ -660,8 +798,11 @@
 
   <script>
     const buttons = document.querySelectorAll('[data-set-lang]');
+    const themeButtons = document.querySelectorAll('[data-set-theme]');
     const root = document.documentElement;
     const saved = localStorage.getItem('site-lang') || 'it';
+    const savedTheme = localStorage.getItem('site-theme');
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
 
     function setLang(lang) {
       root.classList.remove('lang-it', 'lang-en');
@@ -671,7 +812,19 @@
       buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.setLang === lang));
     }
 
+    function setTheme(theme) {
+      root.classList.remove('theme-dark', 'theme-light');
+      root.classList.add(`theme-${theme}`);
+      localStorage.setItem('site-theme', theme);
+      themeButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.setTheme === theme));
+    }
+
     buttons.forEach(btn => btn.addEventListener('click', () => setLang(btn.dataset.setLang)));
+
+    const initialTheme = savedTheme || (prefersLight ? 'light' : 'dark');
+    setTheme(initialTheme);
+
+    themeButtons.forEach(btn => btn.addEventListener('click', () => setTheme(btn.dataset.setTheme)));
     setLang(saved);
   </script>
 </body>
