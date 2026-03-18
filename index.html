@@ -1,1 +1,651 @@
-Hello World
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ivan Agliardi | Developer & Sysadmin</title>
+  <meta name="description" content="Pagina personale GitHub Pages di Ivan Agliardi: sviluppo software, sistemistica Linux, DevOps, cloud, sicurezza, open source e AI applicata." />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #121937;
+      --card: rgba(255,255,255,0.06);
+      --card-strong: rgba(255,255,255,0.09);
+      --text: #edf2ff;
+      --muted: #b7c0e1;
+      --line: rgba(255,255,255,0.14);
+      --accent: #7c9cff;
+      --accent-2: #65e0c7;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius: 24px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124,156,255,0.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(101,224,199,0.12), transparent 28%),
+        linear-gradient(180deg, #0a0f1d 0%, #0d1326 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: rgba(8, 12, 24, 0.6);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #08101f;
+      font-weight: 900;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a,
+    .lang-toggle button,
+    .cta {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .lang-toggle button:hover,
+    .cta:hover,
+    .lang-toggle button.active {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.22);
+    }
+
+    .hero {
+      padding: 72px 0 34px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 34px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(124,156,255,0.12);
+      border: 1px solid rgba(124,156,255,0.25);
+      color: #d7e0ff;
+      font-size: 0.92rem;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      font-size: clamp(2.3rem, 5vw, 4.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      margin-bottom: 20px;
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 62ch;
+      margin-bottom: 26px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .cta.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #0a1020;
+      border: none;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.55rem;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .hero-card {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100%;
+    }
+
+    .mini-terminal {
+      background: #09101d;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 18px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      color: #cfe2ff;
+      font-size: 0.92rem;
+      overflow: auto;
+      margin-top: 18px;
+    }
+
+    .mini-terminal .prompt { color: #65e0c7; }
+    .mini-terminal .accent { color: #7c9cff; }
+
+    section { padding: 24px 0; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: end;
+      margin-bottom: 18px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.6rem, 3vw, 2.5rem);
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 58ch;
+      margin-bottom: 0;
+    }
+
+    .grid-3,
+    .grid-2,
+    .skills-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .skills-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .card {
+      padding: 24px;
+      border-radius: 22px;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      background: var(--card-strong);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.08rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #d8def4;
+      font-size: 0.92rem;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      padding: 18px 20px;
+      border-left: 3px solid rgba(124,156,255,0.6);
+      background: rgba(255,255,255,0.05);
+      border-radius: 0 20px 20px 0;
+    }
+
+    .timeline-item strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .footer {
+      padding: 44px 0 60px;
+      color: var(--muted);
+    }
+
+    .footer-box {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 22px 24px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    [data-lang] { display: none; }
+    html.lang-it [data-lang="it"] { display: inline; }
+    html.lang-en [data-lang="en"] { display: inline; }
+    html.lang-it [data-lang-block="it"] { display: block; }
+    html.lang-en [data-lang-block="en"] { display: block; }
+    [data-lang-block] { display: none; }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .skills-grid,
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-grid > :first-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav { align-items: flex-start; flex-direction: column; }
+      .hero { padding-top: 40px; }
+      .hero-grid,
+      .skills-grid,
+      .grid-3,
+      .grid-2,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+      .hero-copy,
+      .hero-card,
+      .card { padding: 22px; }
+      .section-head { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="wrap nav">
+      <div class="brand">
+        <div class="brand-badge">IA</div>
+        <div>Ivan Agliardi / <span style="opacity:.7">ziovanja.github.io</span></div>
+      </div>
+      <div class="nav-links">
+        <a href="#skills"><span data-lang="it">Skill</span><span data-lang="en">Skills</span></a>
+        <a href="#stack">Stack</a>
+        <a href="#services"><span data-lang="it">Servizi</span><span data-lang="en">Services</span></a>
+        <a href="#contact">Contact</a>
+        <div class="lang-toggle" aria-label="Language switcher">
+          <button class="active" data-set-lang="it">IT</button>
+          <button data-set-lang="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="panel hero-copy">
+          <div class="eyebrow">
+            <span>●</span>
+            <span data-lang="it">Developer, sistemista Linux, DevOps e problem solver</span>
+            <span data-lang="en">Developer, Linux sysadmin, DevOps engineer and problem solver</span>
+          </div>
+
+          <h1>
+            <span data-lang="it">Costruisco infrastrutture digitali solide, veloci e intelligenti.</span>
+            <span data-lang="en">I build digital infrastructure that is solid, fast, and intelligent.</span>
+          </h1>
+
+          <p class="lead">
+            <span data-lang="it">Progetto, sviluppo e mantengo piattaforme web, server Linux, stack applicativi complessi, automazioni, ambienti cloud e architetture open source. Dalla riga di comando al codice applicativo, il mio lavoro unisce visione sistemistica, affidabilità operativa e capacità di risolvere problemi reali.</span>
+            <span data-lang="en">I design, develop and maintain web platforms, Linux servers, complex application stacks, automations, cloud environments, and open-source architectures. From the command line to application code, my work combines systems thinking, operational reliability, and the ability to solve real problems.</span>
+          </p>
+
+          <div class="hero-actions">
+            <a class="cta primary" href="https://github.com/ziovanja" target="_blank" rel="noopener">GitHub</a>
+            <a class="cta" href="mailto:ivan@agliardi.pro">Email</a>
+            <a class="cta" href="https://www.ivan.agliardi.pro" target="_blank" rel="noopener">Website</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>Dev</strong>
+              <span data-lang="it">Backend, automazione, integrazioni, piattaforme custom</span>
+              <span data-lang="en">Backend, automation, integrations, custom platforms</span>
+            </div>
+            <div class="stat">
+              <strong>Sysadmin</strong>
+              <span data-lang="it">Linux, networking, hardening, tuning, troubleshooting</span>
+              <span data-lang="en">Linux, networking, hardening, tuning, troubleshooting</span>
+            </div>
+            <div class="stat">
+              <strong>Open source</strong>
+              <span data-lang="it">Soluzioni sostenibili, trasparenti e governabili</span>
+              <span data-lang="en">Sustainable, transparent, and well-governed solutions</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel hero-card">
+          <div>
+            <h2 style="margin-bottom:10px; font-size:1.35rem;">
+              <span data-lang="it">Snapshot tecnico</span>
+              <span data-lang="en">Technical snapshot</span>
+            </h2>
+            <p style="color:var(--muted); margin-bottom:0;">
+              <span data-lang="it">Un profilo ibrido tra sviluppo software, infrastrutture, sicurezza, performance tuning, cloud e supporto a progetti complessi ad alta intensità tecnica.</span>
+              <span data-lang="en">A hybrid profile across software development, infrastructure, security, performance tuning, cloud and support for complex, high-intensity technical projects.</span>
+            </p>
+          </div>
+          <div class="mini-terminal" aria-label="Terminal example">
+<span class="prompt">ivan@ziovanja</span>:<span class="accent">~</span>$ skills --summary
+<br/>→ Linux administration / Debian / Ubuntu / ISPConfig / Nginx / Apache
+<br/>→ PHP / Laravel / Python / MySQL / API integration / automation
+<br/>→ DevOps / backup / SSL / DNS / email systems / monitoring
+<br/>→ Open source / AI workflows / troubleshooting / cyber resilience
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>
+              <span data-lang="it">Competenze chiave</span>
+              <span data-lang="en">Core skills</span>
+            </h2>
+            <p>
+              <span data-lang="it">Una panoramica rapida ma concreta delle aree in cui opero con maggiore continuità e profondità.</span>
+              <span data-lang="en">A fast but concrete overview of the domains where I work with the most continuity and depth.</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="skills-grid">
+          <article class="card">
+            <h3><span data-lang="it">Sviluppo backend</span><span data-lang="en">Backend development</span></h3>
+            <p><span data-lang="it">PHP, Laravel, CodeIgniter, Python, architetture web, dashboard, API, strumenti amministrativi, portali gestionali e logiche custom.</span><span data-lang="en">PHP, Laravel, CodeIgniter, Python, web architectures, dashboards, APIs, admin tools, management portals, and custom logic.</span></p>
+          </article>
+          <article class="card">
+            <h3><span data-lang="it">Sistemistica Linux</span><span data-lang="en">Linux systems administration</span></h3>
+            <p><span data-lang="it">Provisioning, configurazione, manutenzione e ottimizzazione di server Debian e Ubuntu in ambienti single server e multi-tenant.</span><span data-lang="en">Provisioning, configuration, maintenance and optimization of Debian and Ubuntu servers in single-server and multi-tenant environments.</span></p>
+          </article>
+          <article class="card">
+            <h3>Web server & hosting</h3>
+            <p><span data-lang="it">Nginx, Apache, PHP-FPM, reverse proxy, virtual host, ISPConfig, SSL/TLS, cache, compressione e tuning delle performance.</span><span data-lang="en">Nginx, Apache, PHP-FPM, reverse proxies, virtual hosts, ISPConfig, SSL/TLS, caching, compression and performance tuning.</span></p>
+          </article>
+          <article class="card">
+            <h3>Database & data</h3>
+            <p><span data-lang="it">MySQL/MariaDB, modellazione dati, query, troubleshooting, migrazioni, integrazione dati e supporto a flussi analytics.</span><span data-lang="en">MySQL/MariaDB, data modeling, querying, troubleshooting, migrations, data integration and analytics-oriented workflows.</span></p>
+          </article>
+          <article class="card">
+            <h3>DevOps & automation</h3>
+            <p><span data-lang="it">Script Bash e Python, deploy, backup, cron, monitoraggio, automazioni operative, pipeline pratiche e riduzione del lavoro ripetitivo.</span><span data-lang="en">Bash and Python scripting, deployment, backups, cron, monitoring, operational automation, practical pipelines, and reducing repetitive work.</span></p>
+          </article>
+          <article class="card">
+            <h3>Email systems</h3>
+            <p><span data-lang="it">Postfix, antispam, deliverability, DNS mail, gestione tecnica di caselle e infrastrutture email in ambienti business.</span><span data-lang="en">Postfix, antispam, deliverability, mail DNS records, technical mailbox management and business email infrastructure.</span></p>
+          </article>
+          <article class="card">
+            <h3>Cloud & networking</h3>
+            <p><span data-lang="it">VPS, server dedicati, Cloudflare, DNS, CDN, segmentazione, troubleshooting rete, sicurezza perimetrale e continuità operativa.</span><span data-lang="en">VPS, dedicated servers, Cloudflare, DNS, CDN, segmentation, network troubleshooting, perimeter security and operational continuity.</span></p>
+          </article>
+          <article class="card">
+            <h3>AI & open source</h3>
+            <p><span data-lang="it">Workflow AI applicati, modelli locali, integrazione con software esistenti, cultura open source e sovranità digitale.</span><span data-lang="en">Applied AI workflows, local models, integration with existing software, open-source culture and digital sovereignty.</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack">
+      <div class="wrap grid-2">
+        <div class="card">
+          <div class="section-head" style="margin-bottom:10px;">
+            <div>
+              <h2 style="font-size:1.7rem; margin-bottom:6px;">Tech stack</h2>
+              <p><span data-lang="it">Tecnologie, piattaforme e strumenti con cui lavoro più spesso.</span><span data-lang="en">Technologies, platforms and tools I work with most often.</span></p>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="tag">Linux</span>
+            <span class="tag">Debian</span>
+            <span class="tag">Ubuntu</span>
+            <span class="tag">PHP</span>
+            <span class="tag">Laravel</span>
+            <span class="tag">CodeIgniter</span>
+            <span class="tag">Python</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">MariaDB</span>
+            <span class="tag">Nginx</span>
+            <span class="tag">Apache</span>
+            <span class="tag">ISPConfig</span>
+            <span class="tag">Cloudflare</span>
+            <span class="tag">Git</span>
+            <span class="tag">Bash</span>
+            <span class="tag">REST API</span>
+            <span class="tag">Ghost</span>
+            <span class="tag">WordPress</span>
+            <span class="tag">Perfex</span>
+            <span class="tag">Docker</span>
+            <span class="tag">SSL/TLS</span>
+            <span class="tag">DNS</span>
+            <span class="tag">Postfix</span>
+            <span class="tag">Rspamd</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-head" style="margin-bottom:10px;">
+            <div>
+              <h2 style="font-size:1.7rem; margin-bottom:6px;">
+                <span data-lang="it">Come lavoro</span>
+                <span data-lang="en">How I work</span>
+              </h2>
+              <p><span data-lang="it">Metodo operativo orientato a risultati, stabilità e chiarezza tecnica.</span><span data-lang="en">An operating method focused on results, stability, and technical clarity.</span></p>
+            </div>
+          </div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <strong><span data-lang="it">Analisi e diagnosi</span><span data-lang="en">Analysis and diagnosis</span></strong>
+              <span data-lang="it">Individuo colli di bottiglia, rischi, ridondanze, vulnerabilità e inefficienze con approccio concreto.</span>
+              <span data-lang="en">I identify bottlenecks, risks, redundancies, vulnerabilities and inefficiencies with a practical approach.</span>
+            </div>
+            <div class="timeline-item">
+              <strong><span data-lang="it">Architettura e implementazione</span><span data-lang="en">Architecture and implementation</span></strong>
+              <span data-lang="it">Scelgo stack e soluzioni adatte al contesto, evitando complessità inutile e debito tecnico evitabile.</span>
+              <span data-lang="en">I choose stacks and solutions that fit the context, avoiding unnecessary complexity and avoidable technical debt.</span>
+            </div>
+            <div class="timeline-item">
+              <strong><span data-lang="it">Manutenzione e miglioramento continuo</span><span data-lang="en">Maintenance and continuous improvement</span></strong>
+              <span data-lang="it">Monitoraggio, documentazione, automazione e ottimizzazione progressiva per mantenere i sistemi vivi e affidabili.</span>
+              <span data-lang="en">Monitoring, documentation, automation, and gradual optimization to keep systems alive and reliable.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2><span data-lang="it">Cosa posso fare</span><span data-lang="en">What I can do</span></h2>
+            <p><span data-lang="it">Ambiti di intervento trasversali tra sviluppo, sistemistica e gestione tecnica di progetti digitali.</span><span data-lang="en">Cross-functional areas spanning development, systems administration, and the technical management of digital projects.</span></p>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <h3><span data-lang="it">Sviluppare piattaforme e strumenti custom</span><span data-lang="en">Build custom platforms and tools</span></h3>
+            <p><span data-lang="it">Portali, aree riservate, backoffice, API, automazioni e integrazioni su misura per processi reali.</span><span data-lang="en">Portals, private areas, back offices, APIs, automation, and tailored integrations for real-world processes.</span></p>
+          </article>
+          <article class="card">
+            <h3><span data-lang="it">Mettere ordine nei server</span><span data-lang="en">Bring order to servers</span></h3>
+            <p><span data-lang="it">Riassetto, hardening, tuning, diagnostica, sicurezza, backup e affidabilità per stack Linux e hosting complessi.</span><span data-lang="en">Restructuring, hardening, tuning, diagnostics, security, backups, and reliability for Linux stacks and complex hosting environments.</span></p>
+          </article>
+          <article class="card">
+            <h3><span data-lang="it">Gestire incidenti e problemi ostinati</span><span data-lang="en">Handle stubborn incidents and failures</span></h3>
+            <p><span data-lang="it">Errori intermittenti, email che non arrivano, repository rotti, performance degradate, servizi giù, configurazioni incoerenti.</span><span data-lang="en">Intermittent errors, email delivery issues, broken repositories, degraded performance, downtime, and inconsistent configurations.</span></p>
+          </article>
+          <article class="card">
+            <h3><span data-lang="it">Automatizzare attività ripetitive</span><span data-lang="en">Automate repetitive work</span></h3>
+            <p><span data-lang="it">Script, job schedulati, flussi tecnici e strumenti che riducono errori manuali e tempi operativi.</span><span data-lang="en">Scripts, scheduled jobs, technical workflows, and tools that reduce manual errors and save time.</span></p>
+          </article>
+          <article class="card">
+            <h3><span data-lang="it">Integrare AI in modo utile</span><span data-lang="en">Integrate AI in a useful way</span></h3>
+            <p><span data-lang="it">Uso pratico dell'intelligenza artificiale su processi, dati e sistemi esistenti, con attenzione a controllo e sostenibilità.</span><span data-lang="en">Practical AI use across processes, data, and existing systems, with an emphasis on control and sustainability.</span></p>
+          </article>
+          <article class="card">
+            <h3><span data-lang="it">Affiancare team e clienti</span><span data-lang="en">Support teams and clients</span></h3>
+            <p><span data-lang="it">Consulenza tecnica, visione architetturale, supporto decisionale e traduzione tra esigenze business e vincoli tecnologici.</span><span data-lang="en">Technical consulting, architectural vision, decision support, and translating between business needs and technology constraints.</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="panel card" style="padding: 30px;">
+          <div class="section-head" style="margin-bottom:12px;">
+            <div>
+              <h2><span data-lang="it">Contatti</span><span data-lang="en">Contact</span></h2>
+              <p><span data-lang="it">Per collaborazioni, consulenze tecniche, audit infrastrutturali, sviluppo custom o supporto avanzato.</span><span data-lang="en">For collaborations, technical consulting, infrastructure audits, custom development or advanced support.</span></p>
+            </div>
+          </div>
+          <div class="hero-actions" style="margin-bottom:0;">
+            <a class="cta primary" href="mailto:ivan@agliardi.pro">ivan@agliardi.pro</a>
+            <a class="cta" href="https://github.com/ziovanja" target="_blank" rel="noopener">github.com/ziovanja</a>
+            <a class="cta" href="https://www.ivan.agliardi.pro" target="_blank" rel="noopener">ivan.agliardi.pro</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-box">
+      <div>
+        <strong>Ivan Agliardi</strong><br />
+        <span data-lang="it">Sviluppatore, sysadmin, sostenitore dell'open source</span>
+        <span data-lang="en">Developer, sysadmin, open-source advocate</span>
+      </div>
+      <div>
+        <span data-lang="it">Pagina pensata per GitHub Pages · HTML, CSS e JS puro</span>
+        <span data-lang="en">Designed for GitHub Pages · Pure HTML, CSS and JS</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const buttons = document.querySelectorAll('[data-set-lang]');
+    const root = document.documentElement;
+    const saved = localStorage.getItem('site-lang') || 'it';
+
+    function setLang(lang) {
+      root.classList.remove('lang-it', 'lang-en');
+      root.classList.add(`lang-${lang}`);
+      document.documentElement.lang = lang;
+      localStorage.setItem('site-lang', lang);
+      buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.setLang === lang));
+    }
+
+    buttons.forEach(btn => btn.addEventListener('click', () => setLang(btn.dataset.setLang)));
+    setLang(saved);
+  </script>
+</body>
+</html>
