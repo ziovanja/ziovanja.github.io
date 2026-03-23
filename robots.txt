@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ziovanja.com/sitemap.xml
+Host: ziovanja.com

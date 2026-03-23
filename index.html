@@ -4,17 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ivan Agliardi | Developer & Sysadmin</title>
-  <meta name="description" content="Pagina personale GitHub Pages di Ivan Agliardi: sviluppo software, sistemistica Linux, DevOps, cloud, sicurezza, open source e AI applicata." />
-  <link rel="canonical" href="https://www.ivan.agliardi.pro/" />
+  <meta name="description" content="Pagina personale di Ivan Agliardi: sviluppo software, sistemistica Linux, DevOps, cloud, sicurezza, open source e AI applicata." />
+  <meta name="keywords" content="Ivan Agliardi, developer, sysadmin, Linux, DevOps, cloud, sicurezza informatica, open source, PHP, Laravel, Python, MySQL, Nginx, Apache, ISPConfig, automazione, integrazione API" />
+  <link rel="canonical" href="https://ziovanja.com/" />
+  <link rel="alternate" hreflang="it" href="https://ziovanja.com/" />
+  <link rel="alternate" hreflang="en" href="https://ziovanja.com/" />
+  <link rel="alternate" hreflang="x-default" href="https://ziovanja.com/" />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Ivan Agliardi" />
-  <meta name="theme-color" content="#0b1020" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f7ff" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b1020" />
+  <meta name="application-name" content="Ivan Agliardi" />
   <meta property="og:title" content="Ivan Agliardi | Developer & Sysadmin" />
   <meta property="og:description" content="Pagina personale GitHub Pages di Ivan Agliardi: sviluppo software, sistemistica Linux, DevOps, cloud, sicurezza, open source e AI applicata." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.ivan.agliardi.pro/" />
+  <meta property="og:url" content="https://ziovanja.com/" />
   <meta property="og:site_name" content="Ivan Agliardi" />
   <meta property="og:locale" content="it_IT" />
+  <meta property="og:locale:alternate" content="en_US" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Ivan Agliardi | Developer & Sysadmin" />
   <meta name="twitter:description" content="Pagina personale GitHub Pages di Ivan Agliardi: sviluppo software, sistemistica Linux, DevOps, cloud, sicurezza, open source e AI applicata." />
@@ -23,12 +30,12 @@
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Ivan Agliardi",
-      "url": "https://www.ivan.agliardi.pro/",
+      "url": "https://ziovanja.com/",
       "email": "mail@van.agliardi.pro",
       "jobTitle": "Developer & Sysadmin",
       "sameAs": [
         "https://github.com/ziovanja",
-        "https://www.ivan.agliardi.pro/"
+        "https://ziovanja.com/"
       ]
     }
   </script>
@@ -125,18 +132,23 @@
     .nav-links a:hover,
     .lang-toggle button:hover,
     .theme-toggle button:hover,
-    .cta:hover,
-    .lang-toggle button.active,
-    .theme-toggle button.active {
+    .cta:hover {
       transform: translateY(-1px);
       background: rgba(255,255,255,0.1);
       border-color: rgba(255,255,255,0.22);
     }
 
-    /* Show only the option that is NOT active */
-    .lang-toggle button.active,
+    /* Theme switcher keeps only inactive option visible */
     .theme-toggle button.active {
       display: none;
+    }
+
+    /* Language selector shows all options and highlights active one */
+    .lang-toggle button.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #08101f;
+      border-color: transparent;
+      transform: none;
     }
 
     .theme-toggle {
@@ -458,11 +470,15 @@
     html.theme-light .nav-links a:hover,
     html.theme-light .lang-toggle button:hover,
     html.theme-light .theme-toggle button:hover,
-    html.theme-light .cta:hover,
-    html.theme-light .lang-toggle button.active,
-    html.theme-light .theme-toggle button.active {
+    html.theme-light .cta:hover {
       background: rgba(11,16,32,0.08);
       border-color: rgba(11,16,32,0.16);
+    }
+
+    html.theme-light .lang-toggle button.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #08101f;
+      border-color: transparent;
     }
 
     html.theme-light .panel {
@@ -512,8 +528,12 @@
     [data-lang] { display: none; }
     html.lang-it [data-lang="it"] { display: inline; }
     html.lang-en [data-lang="en"] { display: inline; }
+    html.lang-es [data-lang="es"] { display: inline; }
+    html.lang-ru [data-lang="ru"] { display: inline; }
     html.lang-it [data-lang-block="it"] { display: block; }
     html.lang-en [data-lang-block="en"] { display: block; }
+    html.lang-es [data-lang-block="es"] { display: block; }
+    html.lang-ru [data-lang-block="ru"] { display: block; }
     [data-lang-block] { display: none; }
 
     @media (max-width: 1024px) {
@@ -589,13 +609,15 @@
         </svg>
       </button>
       <div class="nav-links" id="mobile-menu">
-        <a href="#skills"><span data-lang="it">Skill</span><span data-lang="en">Skills</span></a>
-        <a href="#stack">Stack</a>
-        <a href="#services"><span data-lang="it">Servizi</span><span data-lang="en">Services</span></a>
-        <a href="#contact">Contact</a>
+        <a href="#skills"><span data-lang="it">Skill</span><span data-lang="en">Skills</span><span data-lang="es">Habilidades</span><span data-lang="ru">Навыки</span></a>
+        <a href="#stack"><span data-lang="it">Stack</span><span data-lang="en">Stack</span><span data-lang="es">Stack</span><span data-lang="ru">Стек</span></a>
+        <a href="#services"><span data-lang="it">Servizi</span><span data-lang="en">Services</span><span data-lang="es">Servicios</span><span data-lang="ru">Услуги</span></a>
+        <a href="#contact"><span data-lang="it">Contatti</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span><span data-lang="ru">Контакты</span></a>
         <div class="lang-toggle" aria-label="Language switcher">
           <button class="active" data-set-lang="it">IT</button>
           <button data-set-lang="en">EN</button>
+          <button data-set-lang="es">ES</button>
+          <button data-set-lang="ru">RU</button>
         </div>
         <div class="theme-toggle" aria-label="Theme switcher">
           <button class="active" data-set-theme="dark" aria-label="Dark mode">
@@ -631,22 +653,28 @@
             <span>●</span>
             <span data-lang="it">Developer, sistemista Linux, DevOps e problem solver</span>
             <span data-lang="en">Developer, Linux sysadmin, DevOps engineer and problem solver</span>
+            <span data-lang="es">Developer, administrador Linux, ingeniero DevOps y solucionador de problemas</span>
+            <span data-lang="ru">Разработчик, Linux-системный администратор, DevOps-инженер и решатель сложных задач</span>
           </div>
 
           <h1>
             <span data-lang="it">Costruisco infrastrutture digitali solide, veloci e artificialmente intelligenti.</span>
             <span data-lang="en">I build digital infrastructures that are solid, fast, and artificially intelligent.</span>
+            <span data-lang="es">Construyo infraestructuras digitales sólidas, rápidas y artificialmente inteligentes.</span>
+            <span data-lang="ru">Я создаю цифровые инфраструктуры: надежные, быстрые и интеллектуально усиленные.</span>
           </h1>
 
           <p class="lead">
             <span data-lang="it">Progetto, sviluppo e mantengo piattaforme web, server Linux, stack applicativi complessi, automazioni, ambienti cloud e architetture open source. Dalla riga di comando al codice applicativo, il mio lavoro unisce visione sistemistica, affidabilità operativa e capacità di risolvere problemi reali.</span>
             <span data-lang="en">I design, develop and maintain web platforms, Linux servers, complex application stacks, automations, cloud environments, and open-source architectures. From the command line to application code, my work combines systems thinking, operational reliability, and the ability to solve real problems.</span>
+            <span data-lang="es">Diseño, desarrollo y mantengo plataformas web, servidores Linux, stacks de aplicaciones complejos, automatizaciones, entornos cloud y arquitecturas open source. Desde la línea de comandos hasta el código de aplicación, mi trabajo combina visión sistémica, fiabilidad operativa y capacidad para resolver problemas reales.</span>
+            <span data-lang="ru">Я проектирую, разрабатываю и поддерживаю веб-платформы, Linux-серверы, сложные прикладные стеки, автоматизацию, облачные среды и open-source архитектуры. От командной строки до прикладного кода моя работа объединяет системное мышление, операционную надежность и умение решать реальные задачи.</span>
           </p>
 
           <div class="hero-actions">
             <a class="cta primary" href="https://github.com/ziovanja" target="_blank" rel="noopener">GitHub</a>
             <a class="cta" href="mailto:mail@van.agliardi.pro">Email</a>
-            <a class="cta" href="https://www.ivan.agliardi.pro/" target="_blank" rel="noopener">Website</a>
+            <a class="cta" href="https://ziovanja.com/" target="_blank" rel="noopener">Website</a>
           </div>
 
           <div class="stats">
@@ -654,16 +682,22 @@
               <strong>Dev</strong>
               <span data-lang="it">Backend, automazione, integrazioni, piattaforme custom</span>
               <span data-lang="en">Backend, automation, integrations, custom platforms</span>
+              <span data-lang="es">Backend, automatización, integraciones y plataformas a medida</span>
+              <span data-lang="ru">Бэкенд, автоматизация, интеграции и кастомные платформы</span>
             </div>
             <div class="stat">
               <strong>Sysadmin</strong>
               <span data-lang="it">Linux, networking, hardening, tuning, troubleshooting</span>
               <span data-lang="en">Linux, networking, hardening, tuning, troubleshooting</span>
+              <span data-lang="es">Linux, redes, hardening, tuning y troubleshooting</span>
+              <span data-lang="ru">Linux, сети, хардненинг, тюнинг и troubleshooting</span>
             </div>
             <div class="stat">
               <strong>Open source</strong>
               <span data-lang="it">Soluzioni sostenibili, trasparenti e governabili</span>
               <span data-lang="en">Sustainable, transparent, and well-governed solutions</span>
+              <span data-lang="es">Soluciones sostenibles, transparentes y gobernables</span>
+              <span data-lang="ru">Устойчивые, прозрачные и управляемые решения</span>
             </div>
           </div>
         </div>
@@ -673,10 +707,14 @@
             <h2 style="margin-bottom:10px; font-size:1.35rem;">
               <span data-lang="it">Snapshot tecnico</span>
               <span data-lang="en">Technical snapshot</span>
+              <span data-lang="es">Resumen técnico</span>
+              <span data-lang="ru">Технический обзор</span>
             </h2>
             <p style="color:var(--muted); margin-bottom:0;">
               <span data-lang="it">Un profilo ibrido tra sviluppo software, infrastrutture, sicurezza, performance tuning, cloud e supporto a progetti complessi ad alta intensità tecnica.</span>
               <span data-lang="en">A hybrid profile across software development, infrastructure, security, performance tuning, cloud and support for complex, high-intensity technical projects.</span>
+              <span data-lang="es">Un perfil híbrido entre desarrollo de software, infraestructura, seguridad, tuning de rendimiento, cloud y soporte a proyectos complejos de alta intensidad técnica.</span>
+              <span data-lang="ru">Гибридный профиль на стыке разработки ПО, инфраструктуры, безопасности, оптимизации производительности, облака и поддержки сложных технически насыщенных проектов.</span>
             </p>
           </div>
           <div class="mini-terminal" aria-label="Terminal example">
@@ -697,46 +735,50 @@
             <h2>
               <span data-lang="it">Competenze chiave</span>
               <span data-lang="en">Core skills</span>
+              <span data-lang="es">Habilidades clave</span>
+              <span data-lang="ru">Ключевые навыки</span>
             </h2>
             <p>
               <span data-lang="it">Una panoramica rapida ma concreta delle aree in cui opero con maggiore continuità e profondità.</span>
               <span data-lang="en">A fast but concrete overview of the domains where I work with the most continuity and depth.</span>
+              <span data-lang="es">Una visión rápida pero concreta de las áreas en las que trabajo con mayor continuidad y profundidad.</span>
+              <span data-lang="ru">Быстрый, но предметный обзор направлений, в которых я работаю наиболее системно и глубоко.</span>
             </p>
           </div>
         </div>
 
         <div class="skills-grid">
           <article class="card">
-            <h3><span data-lang="it">Sviluppo backend</span><span data-lang="en">Backend development</span></h3>
-            <p><span data-lang="it">PHP, Laravel, CodeIgniter, Python, architetture web, dashboard, API, strumenti amministrativi, portali gestionali e logiche custom.</span><span data-lang="en">PHP, Laravel, CodeIgniter, Python, web architectures, dashboards, APIs, admin tools, management portals, and custom logic.</span></p>
+            <h3><span data-lang="it">Sviluppo backend</span><span data-lang="en">Backend development</span><span data-lang="es">Desarrollo backend</span><span data-lang="ru">Backend-разработка</span></h3>
+            <p><span data-lang="it">PHP, Laravel, CodeIgniter, Python, architetture web, dashboard, API, strumenti amministrativi, portali gestionali e logiche custom.</span><span data-lang="en">PHP, Laravel, CodeIgniter, Python, web architectures, dashboards, APIs, admin tools, management portals, and custom logic.</span><span data-lang="es">PHP, Laravel, CodeIgniter, Python, arquitecturas web, dashboards, APIs, herramientas administrativas, portales de gestión y lógica a medida.</span><span data-lang="ru">PHP, Laravel, CodeIgniter, Python, веб-архитектуры, дашборды, API, административные инструменты, управленческие порталы и кастомная бизнес-логика.</span></p>
           </article>
           <article class="card">
-            <h3><span data-lang="it">Sistemistica Linux</span><span data-lang="en">Linux systems administration</span></h3>
-            <p><span data-lang="it">Provisioning, configurazione, manutenzione e ottimizzazione di server Debian e Ubuntu in ambienti single server e multi-tenant.</span><span data-lang="en">Provisioning, configuration, maintenance and optimization of Debian and Ubuntu servers in single-server and multi-tenant environments.</span></p>
+            <h3><span data-lang="it">Sistemistica Linux</span><span data-lang="en">Linux systems administration</span><span data-lang="es">Administración de sistemas Linux</span><span data-lang="ru">Администрирование Linux-систем</span></h3>
+            <p><span data-lang="it">Provisioning, configurazione, manutenzione e ottimizzazione di server Debian e Ubuntu in ambienti single server e multi-tenant.</span><span data-lang="en">Provisioning, configuration, maintenance and optimization of Debian and Ubuntu servers in single-server and multi-tenant environments.</span><span data-lang="es">Provisioning, configuración, mantenimiento y optimización de servidores Debian y Ubuntu en entornos single-server y multi-tenant.</span><span data-lang="ru">Провижининг, настройка, сопровождение и оптимизация серверов Debian и Ubuntu в single-server и multi-tenant средах.</span></p>
           </article>
           <article class="card">
             <h3>Web server & hosting</h3>
-            <p><span data-lang="it">Nginx, Apache, PHP-FPM, reverse proxy, virtual host, ISPConfig, SSL/TLS, cache, compressione e tuning delle performance.</span><span data-lang="en">Nginx, Apache, PHP-FPM, reverse proxies, virtual hosts, ISPConfig, SSL/TLS, caching, compression and performance tuning.</span></p>
+            <p><span data-lang="it">Nginx, Apache, PHP-FPM, reverse proxy, virtual host, ISPConfig, SSL/TLS, cache, compressione e tuning delle performance.</span><span data-lang="en">Nginx, Apache, PHP-FPM, reverse proxies, virtual hosts, ISPConfig, SSL/TLS, caching, compression and performance tuning.</span><span data-lang="es">Nginx, Apache, PHP-FPM, reverse proxy, virtual host, ISPConfig, SSL/TLS, caché, compresión y optimización del rendimiento.</span><span data-lang="ru">Nginx, Apache, PHP-FPM, reverse proxy, virtual host, ISPConfig, SSL/TLS, кэширование, сжатие и тюнинг производительности.</span></p>
           </article>
           <article class="card">
             <h3>Database & data</h3>
-            <p><span data-lang="it">MySQL/MariaDB, modellazione dati, query, troubleshooting, migrazioni, integrazione dati e supporto a flussi analytics.</span><span data-lang="en">MySQL/MariaDB, data modeling, querying, troubleshooting, migrations, data integration and analytics-oriented workflows.</span></p>
+            <p><span data-lang="it">MySQL/MariaDB, modellazione dati, query, troubleshooting, migrazioni, integrazione dati e supporto a flussi analytics.</span><span data-lang="en">MySQL/MariaDB, data modeling, querying, troubleshooting, migrations, data integration and analytics-oriented workflows.</span><span data-lang="es">MySQL/MariaDB, modelado de datos, consultas, troubleshooting, migraciones, integración de datos y soporte a flujos de analítica.</span><span data-lang="ru">MySQL/MariaDB, моделирование данных, запросы, troubleshooting, миграции, интеграция данных и поддержка аналитических процессов.</span></p>
           </article>
           <article class="card">
             <h3>DevOps & automation</h3>
-            <p><span data-lang="it">Script Bash e Python, deploy, backup, cron, monitoraggio, automazioni operative, pipeline pratiche e riduzione del lavoro ripetitivo.</span><span data-lang="en">Bash and Python scripting, deployment, backups, cron, monitoring, operational automation, practical pipelines, and reducing repetitive work.</span></p>
+            <p><span data-lang="it">Script Bash e Python, deploy, backup, cron, monitoraggio, automazioni operative, pipeline pratiche e riduzione del lavoro ripetitivo.</span><span data-lang="en">Bash and Python scripting, deployment, backups, cron, monitoring, operational automation, practical pipelines, and reducing repetitive work.</span><span data-lang="es">Scripts Bash y Python, despliegue, backups, cron, monitorización, automatización operativa, pipelines prácticas y reducción del trabajo repetitivo.</span><span data-lang="ru">Скрипты Bash и Python, деплой, резервные копии, cron, мониторинг, операционная автоматизация, практичные пайплайны и сокращение рутинной работы.</span></p>
           </article>
           <article class="card">
             <h3>Email systems</h3>
-            <p><span data-lang="it">Postfix, antispam, deliverability, DNS mail, gestione tecnica di caselle e infrastrutture email in ambienti business.</span><span data-lang="en">Postfix, antispam, deliverability, mail DNS records, technical mailbox management and business email infrastructure.</span></p>
+            <p><span data-lang="it">Postfix, antispam, deliverability, DNS mail, gestione tecnica di caselle e infrastrutture email in ambienti business.</span><span data-lang="en">Postfix, antispam, deliverability, mail DNS records, technical mailbox management and business email infrastructure.</span><span data-lang="es">Postfix, antispam, entregabilidad, DNS de correo, gestión técnica de buzones e infraestructura email en entornos empresariales.</span><span data-lang="ru">Postfix, антиспам, доставляемость, DNS-записи почты, техническое управление почтовыми ящиками и бизнес-инфраструктурой email.</span></p>
           </article>
           <article class="card">
             <h3>Cloud & networking</h3>
-            <p><span data-lang="it">VPS, server dedicati, Cloudflare, DNS, CDN, segmentazione, troubleshooting rete, sicurezza perimetrale e continuità operativa.</span><span data-lang="en">VPS, dedicated servers, Cloudflare, DNS, CDN, segmentation, network troubleshooting, perimeter security and operational continuity.</span></p>
+            <p><span data-lang="it">VPS, server dedicati, Cloudflare, DNS, CDN, segmentazione, troubleshooting rete, sicurezza perimetrale e continuità operativa.</span><span data-lang="en">VPS, dedicated servers, Cloudflare, DNS, CDN, segmentation, network troubleshooting, perimeter security and operational continuity.</span><span data-lang="es">VPS, servidores dedicados, Cloudflare, DNS, CDN, segmentación, troubleshooting de red, seguridad perimetral y continuidad operativa.</span><span data-lang="ru">VPS, выделенные серверы, Cloudflare, DNS, CDN, сегментация, troubleshooting сети, периметровая безопасность и операционная непрерывность.</span></p>
           </article>
           <article class="card">
             <h3>AI & open source</h3>
-            <p><span data-lang="it">Workflow AI applicati, modelli locali, integrazione con software esistenti, cultura open source e sovranità digitale.</span><span data-lang="en">Applied AI workflows, local models, integration with existing software, open-source culture and digital sovereignty.</span></p>
+            <p><span data-lang="it">Workflow AI applicati, modelli locali, integrazione con software esistenti, cultura open source e sovranità digitale.</span><span data-lang="en">Applied AI workflows, local models, integration with existing software, open-source culture and digital sovereignty.</span><span data-lang="es">Workflows de IA aplicados, modelos locales, integración con software existente, cultura open source y soberanía digital.</span><span data-lang="ru">Прикладные AI-воркфлоу, локальные модели, интеграция с существующим ПО, open-source культура и цифровой суверенитет.</span></p>
           </article>
         </div>
       </div>
@@ -748,7 +790,7 @@
           <div class="section-head" style="margin-bottom:10px;">
             <div>
               <h2 style="font-size:1.7rem; margin-bottom:6px;">Tech stack</h2>
-              <p><span data-lang="it">Tecnologie, piattaforme e strumenti con cui lavoro più spesso.</span><span data-lang="en">Technologies, platforms and tools I work with most often.</span></p>
+              <p><span data-lang="it">Tecnologie, piattaforme e strumenti con cui lavoro più spesso.</span><span data-lang="en">Technologies, platforms and tools I work with most often.</span><span data-lang="es">Tecnologías, plataformas y herramientas con las que trabajo más a menudo.</span><span data-lang="ru">Технологии, платформы и инструменты, с которыми я работаю чаще всего.</span></p>
             </div>
           </div>
           <div class="tags">
@@ -785,25 +827,33 @@
               <h2 style="font-size:1.7rem; margin-bottom:6px;">
                 <span data-lang="it">Come lavoro</span>
                 <span data-lang="en">How I work</span>
+                <span data-lang="es">Cómo trabajo</span>
+                <span data-lang="ru">Как я работаю</span>
               </h2>
-              <p><span data-lang="it">Metodo operativo orientato a risultati, stabilità e chiarezza tecnica.</span><span data-lang="en">An operating method focused on results, stability, and technical clarity.</span></p>
+              <p><span data-lang="it">Metodo operativo orientato a risultati, stabilità e chiarezza tecnica.</span><span data-lang="en">An operating method focused on results, stability, and technical clarity.</span><span data-lang="es">Un método operativo orientado a resultados, estabilidad y claridad técnica.</span><span data-lang="ru">Рабочий подход, ориентированный на результат, стабильность и техническую ясность.</span></p>
             </div>
           </div>
           <div class="timeline">
             <div class="timeline-item">
-              <strong><span data-lang="it">Analisi e diagnosi</span><span data-lang="en">Analysis and diagnosis</span></strong>
+              <strong><span data-lang="it">Analisi e diagnosi</span><span data-lang="en">Analysis and diagnosis</span><span data-lang="es">Análisis y diagnóstico</span><span data-lang="ru">Анализ и диагностика</span></strong>
               <span data-lang="it">Individuo colli di bottiglia, rischi, ridondanze, vulnerabilità e inefficienze con approccio concreto.</span>
               <span data-lang="en">I identify bottlenecks, risks, redundancies, vulnerabilities and inefficiencies with a practical approach.</span>
+              <span data-lang="es">Identifico cuellos de botella, riesgos, redundancias, vulnerabilidades e ineficiencias con un enfoque práctico.</span>
+              <span data-lang="ru">Выявляю узкие места, риски, избыточности, уязвимости и неэффективность с практическим подходом.</span>
             </div>
             <div class="timeline-item">
-              <strong><span data-lang="it">Architettura e implementazione</span><span data-lang="en">Architecture and implementation</span></strong>
+              <strong><span data-lang="it">Architettura e implementazione</span><span data-lang="en">Architecture and implementation</span><span data-lang="es">Arquitectura e implementación</span><span data-lang="ru">Архитектура и внедрение</span></strong>
               <span data-lang="it">Scelgo stack e soluzioni adatte al contesto, evitando complessità inutile e debito tecnico evitabile.</span>
               <span data-lang="en">I choose stacks and solutions that fit the context, avoiding unnecessary complexity and avoidable technical debt.</span>
+              <span data-lang="es">Elijo stacks y soluciones adecuadas al contexto, evitando complejidad innecesaria y deuda técnica evitable.</span>
+              <span data-lang="ru">Подбираю стеки и решения под контекст, избегая ненужной сложности и предотвратимого технического долга.</span>
             </div>
             <div class="timeline-item">
-              <strong><span data-lang="it">Manutenzione e miglioramento continuo</span><span data-lang="en">Maintenance and continuous improvement</span></strong>
+              <strong><span data-lang="it">Manutenzione e miglioramento continuo</span><span data-lang="en">Maintenance and continuous improvement</span><span data-lang="es">Mantenimiento y mejora continua</span><span data-lang="ru">Поддержка и постоянное улучшение</span></strong>
               <span data-lang="it">Monitoraggio, documentazione, automazione e ottimizzazione progressiva per mantenere i sistemi vivi e affidabili.</span>
               <span data-lang="en">Monitoring, documentation, automation, and gradual optimization to keep systems alive and reliable.</span>
+              <span data-lang="es">Monitorización, documentación, automatización y optimización progresiva para mantener los sistemas vivos y fiables.</span>
+              <span data-lang="ru">Мониторинг, документация, автоматизация и постепенная оптимизация для поддержания систем в рабочем и надежном состоянии.</span>
             </div>
           </div>
         </div>
@@ -814,35 +864,35 @@
       <div class="wrap">
         <div class="section-head">
           <div>
-            <h2><span data-lang="it">Cosa posso fare</span><span data-lang="en">What I can do</span></h2>
-            <p><span data-lang="it">Ambiti di intervento trasversali tra sviluppo, sistemistica e gestione tecnica di progetti digitali.</span><span data-lang="en">Cross-functional areas spanning development, systems administration, and the technical management of digital projects.</span></p>
+            <h2><span data-lang="it">Cosa posso fare</span><span data-lang="en">What I can do</span><span data-lang="es">Qué puedo hacer</span><span data-lang="ru">Что я могу сделать</span></h2>
+            <p><span data-lang="it">Ambiti di intervento trasversali tra sviluppo, sistemistica e gestione tecnica di progetti digitali.</span><span data-lang="en">Cross-functional areas spanning development, systems administration, and the technical management of digital projects.</span><span data-lang="es">Áreas de intervención transversales entre desarrollo, sistemas y gestión técnica de proyectos digitales.</span><span data-lang="ru">Кросс-функциональные направления на стыке разработки, системного администрирования и технического управления цифровыми проектами.</span></p>
           </div>
         </div>
 
         <div class="grid-3">
           <article class="card">
-            <h3><span data-lang="it">Sviluppare piattaforme e strumenti custom</span><span data-lang="en">Build custom platforms and tools</span></h3>
-            <p><span data-lang="it">Portali, aree riservate, backoffice, API, automazioni e integrazioni su misura per processi reali.</span><span data-lang="en">Portals, private areas, back offices, APIs, automation, and tailored integrations for real-world processes.</span></p>
+            <h3><span data-lang="it">Sviluppare piattaforme e strumenti custom</span><span data-lang="en">Build custom platforms and tools</span><span data-lang="es">Desarrollar plataformas y herramientas a medida</span><span data-lang="ru">Разработка кастомных платформ и инструментов</span></h3>
+            <p><span data-lang="it">Portali, aree riservate, backoffice, API, automazioni e integrazioni su misura per processi reali.</span><span data-lang="en">Portals, private areas, back offices, APIs, automation, and tailored integrations for real-world processes.</span><span data-lang="es">Portales, áreas privadas, back office, APIs, automatizaciones e integraciones a medida para procesos reales.</span><span data-lang="ru">Порталы, закрытые зоны, back office, API, автоматизация и интеграции под реальные бизнес-процессы.</span></p>
           </article>
           <article class="card">
-            <h3><span data-lang="it">Mettere ordine nei server</span><span data-lang="en">Bring order to servers</span></h3>
-            <p><span data-lang="it">Riassetto, hardening, tuning, diagnostica, sicurezza, backup e affidabilità per stack Linux e hosting complessi.</span><span data-lang="en">Restructuring, hardening, tuning, diagnostics, security, backups, and reliability for Linux stacks and complex hosting environments.</span></p>
+            <h3><span data-lang="it">Mettere ordine nei server</span><span data-lang="en">Bring order to servers</span><span data-lang="es">Poner orden en los servidores</span><span data-lang="ru">Навести порядок на серверах</span></h3>
+            <p><span data-lang="it">Riassetto, hardening, tuning, diagnostica, sicurezza, backup e affidabilità per stack Linux e hosting complessi.</span><span data-lang="en">Restructuring, hardening, tuning, diagnostics, security, backups, and reliability for Linux stacks and complex hosting environments.</span><span data-lang="es">Reordenamiento, hardening, tuning, diagnóstico, seguridad, copias de seguridad y fiabilidad para stacks Linux y hosting complejos.</span><span data-lang="ru">Реструктуризация, хардненинг, тюнинг, диагностика, безопасность, бэкапы и надежность для Linux-стеков и сложного хостинга.</span></p>
           </article>
           <article class="card">
-            <h3><span data-lang="it">Gestire incidenti e problemi ostinati</span><span data-lang="en">Handle stubborn incidents and failures</span></h3>
-            <p><span data-lang="it">Errori intermittenti, email che non arrivano, repository rotti, performance degradate, servizi giù, configurazioni incoerenti.</span><span data-lang="en">Intermittent errors, email delivery issues, broken repositories, degraded performance, downtime, and inconsistent configurations.</span></p>
+            <h3><span data-lang="it">Gestire incidenti e problemi ostinati</span><span data-lang="en">Handle stubborn incidents and failures</span><span data-lang="es">Gestionar incidentes y problemas persistentes</span><span data-lang="ru">Решать сложные инциденты и устойчивые проблемы</span></h3>
+            <p><span data-lang="it">Errori intermittenti, email che non arrivano, repository rotti, performance degradate, servizi giù, configurazioni incoerenti.</span><span data-lang="en">Intermittent errors, email delivery issues, broken repositories, degraded performance, downtime, and inconsistent configurations.</span><span data-lang="es">Errores intermitentes, correos que no llegan, repositorios rotos, rendimiento degradado, caídas de servicio y configuraciones incoherentes.</span><span data-lang="ru">Плавающие ошибки, проблемы с доставкой почты, поврежденные репозитории, деградация производительности, простои и несогласованные конфигурации.</span></p>
           </article>
           <article class="card">
-            <h3><span data-lang="it">Automatizzare attività ripetitive</span><span data-lang="en">Automate repetitive work</span></h3>
-            <p><span data-lang="it">Script, job schedulati, flussi tecnici e strumenti che riducono errori manuali e tempi operativi.</span><span data-lang="en">Scripts, scheduled jobs, technical workflows, and tools that reduce manual errors and save time.</span></p>
+            <h3><span data-lang="it">Automatizzare attività ripetitive</span><span data-lang="en">Automate repetitive work</span><span data-lang="es">Automatizar tareas repetitivas</span><span data-lang="ru">Автоматизировать повторяющиеся задачи</span></h3>
+            <p><span data-lang="it">Script, job schedulati, flussi tecnici e strumenti che riducono errori manuali e tempi operativi.</span><span data-lang="en">Scripts, scheduled jobs, technical workflows, and tools that reduce manual errors and save time.</span><span data-lang="es">Scripts, tareas programadas, flujos técnicos y herramientas que reducen errores manuales y tiempos operativos.</span><span data-lang="ru">Скрипты, плановые задачи, технические процессы и инструменты, снижающие ручные ошибки и операционные затраты по времени.</span></p>
           </article>
           <article class="card">
-            <h3><span data-lang="it">Integrare AI in modo utile</span><span data-lang="en">Integrate AI in a useful way</span></h3>
-            <p><span data-lang="it">Uso pratico dell'intelligenza artificiale su processi, dati e sistemi esistenti, con attenzione a controllo e sostenibilità.</span><span data-lang="en">Practical AI use across processes, data, and existing systems, with an emphasis on control and sustainability.</span></p>
+            <h3><span data-lang="it">Integrare AI in modo utile</span><span data-lang="en">Integrate AI in a useful way</span><span data-lang="es">Integrar IA de forma útil</span><span data-lang="ru">Интегрировать ИИ с практической пользой</span></h3>
+            <p><span data-lang="it">Uso pratico dell'intelligenza artificiale su processi, dati e sistemi esistenti, con attenzione a controllo e sostenibilità.</span><span data-lang="en">Practical AI use across processes, data, and existing systems, with an emphasis on control and sustainability.</span><span data-lang="es">Uso práctico de la inteligencia artificial en procesos, datos y sistemas existentes, con foco en control y sostenibilidad.</span><span data-lang="ru">Практическое применение ИИ в процессах, данных и существующих системах с акцентом на контроль и устойчивость.</span></p>
           </article>
           <article class="card">
-            <h3><span data-lang="it">Affiancare team e clienti</span><span data-lang="en">Support teams and clients</span></h3>
-            <p><span data-lang="it">Consulenza tecnica, visione architetturale, supporto decisionale e traduzione tra esigenze business e vincoli tecnologici.</span><span data-lang="en">Technical consulting, architectural vision, decision support, and translating between business needs and technology constraints.</span></p>
+            <h3><span data-lang="it">Affiancare team e clienti</span><span data-lang="en">Support teams and clients</span><span data-lang="es">Apoyar a equipos y clientes</span><span data-lang="ru">Поддерживать команды и клиентов</span></h3>
+            <p><span data-lang="it">Consulenza tecnica, visione architetturale, supporto decisionale e traduzione tra esigenze business e vincoli tecnologici.</span><span data-lang="en">Technical consulting, architectural vision, decision support, and translating between business needs and technology constraints.</span><span data-lang="es">Consultoría técnica, visión arquitectónica, apoyo en decisiones y traducción entre necesidades de negocio y restricciones tecnológicas.</span><span data-lang="ru">Технический консалтинг, архитектурное видение, поддержка принятия решений и перевод бизнес-потребностей на язык технологических ограничений.</span></p>
           </article>
         </div>
       </div>
@@ -853,13 +903,13 @@
         <div class="panel card" style="padding: 30px;">
           <div class="section-head" style="margin-bottom:12px;">
             <div>
-              <h2><span data-lang="it">Contatti</span><span data-lang="en">Contact</span></h2>
-              <p><span data-lang="it">Per collaborazioni, consulenze tecniche, audit infrastrutturali, sviluppo custom o supporto avanzato.</span><span data-lang="en">For collaborations, technical consulting, infrastructure audits, custom development or advanced support.</span></p>
+              <h2><span data-lang="it">Contatti</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span><span data-lang="ru">Контакты</span></h2>
+              <p><span data-lang="it">Per collaborazioni, consulenze tecniche, audit infrastrutturali, sviluppo custom o supporto avanzato.</span><span data-lang="en">For collaborations, technical consulting, infrastructure audits, custom development or advanced support.</span><span data-lang="es">Para colaboraciones, consultoría técnica, auditorías de infraestructura, desarrollo a medida o soporte avanzado.</span><span data-lang="ru">Для сотрудничества, технического консалтинга, инфраструктурных аудитов, кастомной разработки и расширенной поддержки.</span></p>
             </div>
           </div>
           <div class="hero-actions" style="margin-bottom:0;">
             <a class="cta primary" href="mailto:mail@van.agliardi.pro">mail@van.agliardi.pro</a>
-            <a class="cta" href="https://www.ivan.agliardi.pro/" target="_blank" rel="noopener">www.ivan.agliardi.pro</a>
+            <a class="cta" href="https://ziovanja.com/" target="_blank" rel="noopener">ziovanja.com</a>
             <a class="cta" href="https://github.com/ziovanja" target="_blank" rel="noopener">github.com/ziovanja</a>
           </div>
         </div>
@@ -873,10 +923,14 @@
         <strong>Ivan Agliardi</strong><br />
         <span data-lang="it">Sviluppatore, sysadmin, sostenitore dell'open source</span>
         <span data-lang="en">Developer, sysadmin, open-source advocate</span>
+        <span data-lang="es">Desarrollador, sysadmin y defensor del open source</span>
+        <span data-lang="ru">Разработчик, системный администратор и сторонник open source</span>
       </div>
       <div>
         <span data-lang="it">Pagina pensata per GitHub Pages · HTML, CSS e JS puro</span>
         <span data-lang="en">Designed for GitHub Pages · Pure HTML, CSS and JS</span>
+        <span data-lang="es">Página diseñada para GitHub Pages · HTML, CSS y JS puro</span>
+        <span data-lang="ru">Страница для GitHub Pages · Чистые HTML, CSS и JS</span>
       </div>
     </div>
   </footer>
@@ -890,10 +944,9 @@
     const root = document.documentElement;
     const saved = localStorage.getItem('site-lang') || 'it';
     const savedTheme = localStorage.getItem('site-theme');
-    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
 
     function setLang(lang) {
-      root.classList.remove('lang-it', 'lang-en');
+      root.classList.remove('lang-it', 'lang-en', 'lang-es', 'lang-ru');
       root.classList.add(`lang-${lang}`);
       document.documentElement.lang = lang;
       localStorage.setItem('site-lang', lang);
@@ -949,7 +1002,7 @@
       });
     }
 
-    const initialTheme = savedTheme || (prefersLight ? 'light' : 'dark');
+    const initialTheme = savedTheme || 'light';
     setTheme(initialTheme);
 
     themeButtons.forEach(btn => btn.addEventListener('click', () => setTheme(btn.dataset.setTheme)));
