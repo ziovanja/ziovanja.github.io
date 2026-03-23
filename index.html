@@ -144,7 +144,57 @@
     }
 
     /* Language selector shows all options and highlights active one */
-    .lang-toggle button.active {
+    .lang-toggle {
+      position: relative;
+    }
+
+    .lang-toggle-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 74px;
+      justify-content: center;
+    }
+
+    .lang-caret {
+      font-size: 0.8rem;
+      opacity: 0.85;
+      transition: transform 0.2s ease;
+    }
+
+    .lang-toggle.open .lang-caret {
+      transform: rotate(180deg);
+    }
+
+    .lang-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      display: none;
+      min-width: 140px;
+      padding: 8px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(8, 12, 24, 0.96);
+      box-shadow: var(--shadow);
+      z-index: 30;
+    }
+
+    .lang-toggle.open .lang-menu {
+      display: grid;
+      gap: 6px;
+    }
+
+    .lang-menu button {
+      width: 100%;
+      border-radius: 12px;
+      text-align: left;
+      display: inline-flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .lang-menu button.active {
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
       color: #08101f;
       border-color: transparent;
@@ -481,6 +531,10 @@
       border-color: transparent;
     }
 
+    html.theme-light .lang-menu {
+      background: rgba(255,255,255,0.98);
+    }
+
     html.theme-light .panel {
       background: linear-gradient(180deg, rgba(11,16,32,0.06), rgba(11,16,32,0.03));
       border: 1px solid rgba(11,16,32,0.08);
@@ -579,6 +633,20 @@
         border-left: 1px solid rgba(11,16,32,0.08);
       }
 
+      .lang-toggle {
+        width: 100%;
+      }
+
+      .lang-toggle .lang-toggle-trigger {
+        width: 100%;
+      }
+
+      .lang-menu {
+        right: auto;
+        left: 0;
+        width: 100%;
+      }
+
       .hero { padding-top: 40px; }
       .hero-grid,
       .skills-grid,
@@ -613,11 +681,24 @@
         <a href="#stack"><span data-lang="it">Stack</span><span data-lang="en">Stack</span><span data-lang="es">Stack</span><span data-lang="ru">Стек</span></a>
         <a href="#services"><span data-lang="it">Servizi</span><span data-lang="en">Services</span><span data-lang="es">Servicios</span><span data-lang="ru">Услуги</span></a>
         <a href="#contact"><span data-lang="it">Contatti</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span><span data-lang="ru">Контакты</span></a>
-        <div class="lang-toggle" aria-label="Language switcher">
-          <button class="active" data-set-lang="it">IT</button>
-          <button data-set-lang="en">EN</button>
-          <button data-set-lang="es">ES</button>
-          <button data-set-lang="ru">RU</button>
+        <div class="lang-toggle" aria-label="Language switcher" data-lang-toggle>
+          <button
+            class="lang-toggle-trigger"
+            type="button"
+            aria-label="Select language"
+            aria-haspopup="true"
+            aria-expanded="false"
+            data-lang-trigger
+          >
+            <span data-current-lang>IT</span>
+            <span class="lang-caret" aria-hidden="true">▾</span>
+          </button>
+          <div class="lang-menu" role="menu" aria-label="Languages">
+            <button type="button" class="active" data-set-lang="it" data-lang-label="IT">Italiano</button>
+            <button type="button" data-set-lang="en" data-lang-label="EN">English</button>
+            <button type="button" data-set-lang="es" data-lang-label="ES">Espanol</button>
+            <button type="button" data-set-lang="ru" data-lang-label="RU">Русский</button>
+          </div>
         </div>
         <div class="theme-toggle" aria-label="Theme switcher">
           <button class="active" data-set-theme="dark" aria-label="Dark mode">
@@ -937,6 +1018,9 @@
 
   <script>
     const buttons = document.querySelectorAll('[data-set-lang]');
+    const langToggle = document.querySelector('[data-lang-toggle]');
+    const langTrigger = document.querySelector('[data-lang-trigger]');
+    const currentLangLabel = document.querySelector('[data-current-lang]');
     const themeButtons = document.querySelectorAll('[data-set-theme]');
     const burgerButton = document.querySelector('[data-burger]');
     const mobileMenu = document.querySelector('#mobile-menu');
@@ -950,7 +1034,14 @@
       root.classList.add(`lang-${lang}`);
       document.documentElement.lang = lang;
       localStorage.setItem('site-lang', lang);
-      buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.setLang === lang));
+      buttons.forEach(btn => {
+        const isActive = btn.dataset.setLang === lang;
+        btn.classList.toggle('active', isActive);
+        if (isActive && currentLangLabel) {
+          currentLangLabel.textContent = btn.dataset.langLabel || lang.toUpperCase();
+        }
+      });
+      closeLangMenu();
     }
 
     function setTheme(theme) {
@@ -961,6 +1052,30 @@
     }
 
     buttons.forEach(btn => btn.addEventListener('click', () => setLang(btn.dataset.setLang)));
+
+    function openLangMenu() {
+      if (!langToggle || !langTrigger) return;
+      langToggle.classList.add('open');
+      langTrigger.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeLangMenu() {
+      if (!langToggle || !langTrigger) return;
+      langToggle.classList.remove('open');
+      langTrigger.setAttribute('aria-expanded', 'false');
+    }
+
+    if (langTrigger && langToggle) {
+      langTrigger.addEventListener('click', () => {
+        const isOpen = langToggle.classList.contains('open');
+        if (isOpen) closeLangMenu();
+        else openLangMenu();
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!langToggle.contains(e.target)) closeLangMenu();
+      });
+    }
 
     function openMenu() {
       if (!mobileMenu) return;
@@ -994,7 +1109,10 @@
       }
 
       window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeMenu();
+        if (e.key === 'Escape') {
+          closeMenu();
+          closeLangMenu();
+        }
       });
 
       mobileMenu.querySelectorAll('a[href^="#"]').forEach(a => {
