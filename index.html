@@ -72,12 +72,18 @@
     .wrap { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
 
     .topbar {
-      position: sticky;
+      position: fixed;
       top: 0;
-      z-index: 10;
+      left: 0;
+      right: 0;
+      z-index: 20;
       backdrop-filter: blur(14px);
       background: rgba(8, 12, 24, 0.6);
       border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    body {
+      padding-top: 74px;
     }
 
     .nav {
@@ -311,7 +317,7 @@
 
     h1, h2, h3, p { margin-top: 0; }
     h1 {
-      font-size: clamp(2.3rem, 5vw, 4.8rem);
+      font-size: clamp(2.3rem, 4vw, 4.8rem);
       line-height: 0.98;
       letter-spacing: -0.04em;
       margin-bottom: 20px;
@@ -380,6 +386,20 @@
 
     .mini-terminal .prompt { color: #65e0c7; }
     .mini-terminal .accent { color: #7c9cff; }
+
+    .snapshot-logo {
+      display: block;
+      width: 180px;
+      height: 180px;
+      margin-top: 16px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      padding: 8px;
+      object-fit: cover;
+    }
 
     section { padding: 24px 0; }
 
@@ -579,6 +599,11 @@
     html.theme-light .mini-terminal .prompt { color: #0ea5e9; }
     html.theme-light .mini-terminal .accent { color: #4f46e5; }
 
+    html.theme-light .snapshot-logo {
+      border: 1px solid rgba(11,16,32,0.10);
+      background: rgba(11,16,32,0.03);
+    }
+
     [data-lang] { display: none; }
     html.lang-it [data-lang="it"] { display: inline; }
     html.lang-en [data-lang="en"] { display: inline; }
@@ -634,17 +659,20 @@
       }
 
       .lang-toggle {
-        width: 100%;
+        width: auto;
+        align-self: flex-start;
       }
 
       .lang-toggle .lang-toggle-trigger {
-        width: 100%;
+        width: auto;
+        min-width: 78px;
       }
 
       .lang-menu {
         right: auto;
         left: 0;
-        width: 100%;
+        min-width: 180px;
+        width: max-content;
       }
 
       .hero { padding-top: 40px; }
@@ -667,7 +695,7 @@
     <div class="wrap nav">
       <div class="brand">
         <div class="brand-badge">IA</div>
-        <div>Ivan Agliardi / <span style="opacity:.7">ziovanja.github.io</span></div>
+        <div>Ivan Agliardi</div>
       </div>
       <button class="burger" type="button" aria-label="Menu" aria-controls="mobile-menu" aria-expanded="false" data-burger>
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -677,6 +705,7 @@
         </svg>
       </button>
       <div class="nav-links" id="mobile-menu">
+        <a href="#home"><span data-lang="it">Home</span><span data-lang="en">Home</span><span data-lang="es">Inicio</span><span data-lang="ru">Главная</span></a>
         <a href="#skills"><span data-lang="it">Skill</span><span data-lang="en">Skills</span><span data-lang="es">Habilidades</span><span data-lang="ru">Навыки</span></a>
         <a href="#stack"><span data-lang="it">Stack</span><span data-lang="en">Stack</span><span data-lang="es">Stack</span><span data-lang="ru">Стек</span></a>
         <a href="#services"><span data-lang="it">Servizi</span><span data-lang="en">Services</span><span data-lang="es">Servicios</span><span data-lang="ru">Услуги</span></a>
@@ -727,7 +756,7 @@
   <div class="menu-overlay" data-menu-overlay aria-hidden="true"></div>
 
   <main>
-    <section class="hero">
+    <section id="home" class="hero">
       <div class="wrap hero-grid">
         <div class="panel hero-copy">
           <div class="eyebrow">
@@ -798,6 +827,13 @@
               <span data-lang="ru">Гибридный профиль на стыке разработки ПО, инфраструктуры, безопасности, оптимизации производительности, облака и поддержки сложных технически насыщенных проектов.</span>
             </p>
           </div>
+          <img
+            class="snapshot-logo"
+            src="logo_ivan_agliardi_pro.png"
+            alt="Logo Ivan Agliardi PRO"
+            loading="lazy"
+            decoding="async"
+          />
           <div class="mini-terminal" aria-label="Terminal example">
 <span class="prompt">ivan@ziovanja</span>:<span class="accent">~</span>$ skills --summary
 <br/>→ Linux administration / Debian / Ubuntu / ISPConfig / Nginx / Apache
